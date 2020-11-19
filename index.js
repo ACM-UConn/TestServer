@@ -6,20 +6,20 @@ console.log(wss)
 wss.on('connection', (ws) => {
     console.log('Connected')
     ws.on('message', (temp) => {
-        console.log('got a message')
         data = JSON.parse(temp)
         if (data.type == "init") {
             console.log('init')
         }
-        else if (data.type == "pressed") {
+        else if (data.status == "pressed") {
             console.log('pressed')
         }
-        else if (data.type == "released") {
+        else if (data.status == "released") {
             console.log('released')
         }
         else {
             console.log("invalid data type")
         }
+        console.log(data)
     });
     ws.on('close', () => {
         console.log("The server is now closed")
